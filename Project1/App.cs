@@ -13,6 +13,30 @@ namespace Project1
         {
             var buildApp = new Build();
             var dbContext = buildApp.BuildApp();
+            while (true)
+            {
+                var input = MainMenu.showMainMenu();
+                if (input == 0)
+                {
+                    break;
+                }
+                switch (input)
+                {
+                    case 1:
+                        while (true)
+                        {
+                            Console.Clear();
+                  
+                        }
+                    case 2:
+                        while (true)
+                        {
+                            Console.Clear();
+
+                        }
+                }
+
+            }
         }
     }
 }
