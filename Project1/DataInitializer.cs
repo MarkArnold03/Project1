@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project1.ShapesData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
-using Project1.ShapesData;
+
 
 namespace Project1
 {
@@ -22,19 +23,19 @@ namespace Project1
         private void ShapeData(ApplicationDbContext dbContext)
         {
 
-            if (!dbContext.Shapes.Any(s => s.ShapeId== 1))
+            if (!dbContext.Shapes.Any(s => s.ShapeId == 1))
             {
                 dbContext.Shapes.Add(new Shape
                 {
-                   Typ="triangle",
-                   Width=5,
-                   Length=4,
-                   Side3 = 5,
-                   Area = 10,
-                   Perimeter= 14,
-                   Date=DateTime.Today,
-                   
-                    
+                    Typ = "Triangle",
+                    Width = 5,
+                    Length = 4,
+                    Side3 = 5,
+                    Area = 10,
+                    Perimeter = 14,
+                    Date = DateTime.Today,
+
+
                 });
             }
             if (!dbContext.Shapes.Any(s => s.ShapeId == 2))
@@ -42,8 +43,8 @@ namespace Project1
                 dbContext.Shapes.Add(new Shape
                 {
                     Typ = "Romb",
-                    Width=2,
-                    Length=9,
+                    Width = 2,
+                    Length = 9,
                     Area = 18,
                     Perimeter = 8,
                     Date = DateTime.Today,
@@ -55,7 +56,7 @@ namespace Project1
             {
                 dbContext.Shapes.Add(new Shape
                 {
-                    Typ = "rectangle",
+                    Typ = "Rectangle",
                     Width=5,
                     Length=2,
                     Area = 10,
