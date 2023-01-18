@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project1.CalculatorData;
 using Project1.ShapesData;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Project1
         {
             dbContext.Database.Migrate();
             ShapeData(dbContext);
-            //CustomerData(dbContext);
+            CalculatorData(dbContext);
            dbContext.SaveChanges();
         }
 
@@ -80,55 +81,58 @@ namespace Project1
 
                 });
             }
-
+            dbContext.SaveChanges();
 
         }
-        //private void CustomerData(ApplicationDbContext dbContext)
-        //{
-        //    if (!dbContext.Customers.Any(c => c.CustomerId == 1))
-        //    {
-        //        dbContext.Customers.Add(new Customer
-        //        {
-        //            Name = "John Smith",
-        //            Email = "john@example.com",
-        //            PhoneNumber = "123-456-7890",
+        private void CalculatorData(ApplicationDbContext dbContext)
+        {
+            if (!dbContext.Calculations.Any(c => c.ID == 1))
+            {
+                dbContext.Calculations.Add(new Calculation
+                {
+                   Tal1= 1,
+                   Tal2= 2,
+                   Operator="+",
+                   Result = 3,
+                   Date = DateTime.Today,
+                });
+            }
+            if (!dbContext.Calculations.Any(c => c.ID == 1))
+            {
+                dbContext.Calculations.Add(new Calculation
+                {
+                    Tal1 = 4,
+                    Tal2 = 2,
+                    Operator = "-",
+                    Result = 2,
+                    Date = DateTime.Today,
+                });
+            }
+            if (!dbContext.Calculations.Any(c => c.ID == 1))
+            {
+                dbContext.Calculations.Add(new Calculation
+                {
+                    Tal1 = 10,
+                    Tal2 = 2,
+                    Operator = "*",
+                    Result = 20,
+                    Date = DateTime.Today,
+                });
+            }
+            if (!dbContext.Calculations.Any(c => c.ID == 1))
+            {
+                dbContext.Calculations.Add(new Calculation
+                {
+                    Tal1 = 10,
+                    Tal2 = 2,
+                    Operator = "/",
+                    Result = 5,
+                    Date = DateTime.Today,
+                });
+            }
 
-        //        });
-        //    }
-        //    if (!dbContext.Customers.Any(c => c.CustomerId == 2))
-        //    {
-        //        dbContext.Customers.Add(new Customer
-        //        {
-        //            Name = "Jane Doe",
-        //            Email = "jane@example.com",
-        //            PhoneNumber = "123-456-7891",
-
-        //        });
-        //    }
-        //    if (!dbContext.Customers.Any(c => c.CustomerId == 3))
-        //    {
-        //        dbContext.Customers.Add(new Customer
-        //        {
-                    
-        //            Name = "Bob Johnson",
-        //            Email = "bob@example.com",
-        //            PhoneNumber = "123-456-7892",
-
-        //        });
-        //    }
-        //    if (!dbContext.Customers.Any(c => c.CustomerId == 4))
-        //    {
-        //        dbContext.Customers.Add(new Customer
-        //        {
-                    
-        //            Name = "Sally Smith",
-        //            Email = "sally@example.com",
-        //            PhoneNumber = "123-456-7893",
-
-        //        });
-        //    }
-        //    dbContext.SaveChanges();
-        //}
+            dbContext.SaveChanges();
+        }
 
     }
 }

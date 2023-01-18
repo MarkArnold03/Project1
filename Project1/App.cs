@@ -1,4 +1,5 @@
-﻿using Project1.Data;
+﻿using Project1.CalculatorData;
+using Project1.Data;
 using Project1.ShapesData;
 using System;
 using System.Collections.Generic;
@@ -66,8 +67,45 @@ namespace Project1
                             }
                         }
                         break;
+                    case 2:
+                        while (true)
+                        {
 
 
+                            Console.Clear();
+                            var input = CalculatorMainMenu.CalculatorsMainMenu();
+                            switch (input)
+                            {
+                                case 1:
+                                    Console.Clear();
+                                    CalculatorMenu.CalculatorsMenu(dbContext);
+                                    break;
+                                case 2:
+                                    Console.Clear();
+                                    CalculatorMainMenu.ShowCalculations(dbContext);
+                                    break;
+                                case 3:
+                                    Console.Clear();
+                                    CalculatorMainMenu.UpdateCalculations(dbContext);
+                                    break;
+                                case 4:
+                                    Console.Clear();
+                                    CalculatorMainMenu.DeleteCalculation(dbContext);
+                                    break;
+                                case 5:
+                                    break;
+                                default:
+                                    Console.WriteLine("Invalid choice.");
+                                    break;
+                            }
+                            if (input == 0)
+                            {
+                                Console.Clear();
+                                break;
+                            }
+
+                        }
+                        break;
 
                 }
 

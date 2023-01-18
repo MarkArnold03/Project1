@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Project1.ShapesData;
+using Project1.CalculatorData;
 
 namespace Project1
 {
@@ -12,7 +13,7 @@ namespace Project1
     {
         public DbSet<Shape> Shapes { get; set; }
         //public DbSet<StenSaxPåse> Spelningar { get; set; }
-        //public DbSet<MiniRäknare> Räkningar { get; set; }
+        public DbSet<Calculation> Calculations { get; set; }
         public ApplicationDbContext()
         {
 

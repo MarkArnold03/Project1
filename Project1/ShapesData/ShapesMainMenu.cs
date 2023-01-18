@@ -31,7 +31,7 @@ namespace Project1.ShapesData
                 {
                     break;
                 }
-                Console.WriteLine("Please choose an option in number");
+                Console.WriteLine("Please choose a number");
             }
             Console.WriteLine();
             return output;
