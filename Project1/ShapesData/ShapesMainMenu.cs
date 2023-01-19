@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Project1.CalculatorData;
 using Project1.ShapesData;
 using System;
 using System.Collections.Generic;
@@ -52,139 +53,92 @@ namespace Project1.ShapesData
             }
             Console.ReadLine();
         }
-        public static void UpdateShape(ApplicationDbContext context)
+        public static bool UpdateShape(ApplicationDbContext context)
         {
             Console.Write("Enter the Shape ID to update: ");
-            var id = int.Parse(Console.ReadLine());
-            var shape = context.Shapes.FirstOrDefault(s => s.ShapeId == id);
-            if (shape == null)
+            try
             {
-                Console.WriteLine("Shape not found.");
-                return;
+                var id = int.Parse(Console.ReadLine());
+                var shape = context.Shapes.FirstOrDefault(s => s.ShapeId == id);
+                if (shape == null)
+                {
+                    Console.WriteLine("Shape not found.");
+                    return false;
+                }
+                var _shapeServices = new ShapeServices();
+                Console.WriteLine("-------Update-------");
+                Console.Write("Enter the shape's type: ");
+                var type = Console.ReadLine();
+                if (type!=shape.Typ)
+                {
+                    Console.WriteLine("Invalid shape type.");
+                    return false;
+                }
+                Console.Write("Enter the shape's width: ");
+                var b = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Enter the shape's length: ");
+                var h = Convert.ToDouble(Console.ReadLine());
+                if (type == "Rectangle" || type == "Parallellogram")
+                {
+                    var area = _shapeServices.SquareArea(b, h);
+                    var perimeter = _shapeServices.RecAndParallelPerimeter(b, h);
+                    Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
+                    Console.WriteLine($"Perimeter: {b}(b) + {h}(h) = {perimeter}");
+                    shape.Typ = type;
+                    shape.Width = b;
+                    shape.Length = h;
+                    shape.Area = area;
+                    shape.Perimeter = perimeter;
+                    shape.Date = DateTime.Today;
+                    context.SaveChanges();
+                    Console.WriteLine("Calculation updated successfully");
+                    return true;
+                }
+                else if (type == "Triangle")
+                {
+                    Console.Write("Enter the shape's side3: ");
+                    var side3 = Convert.ToDouble(Console.ReadLine());
+                    var area = _shapeServices.TriangleArea(b, h);
+                    var perimeter = _shapeServices.TrianglePerimeter(b, h, side3);
+                    Console.WriteLine($"Area: {b}(b) * {h}h = {area}");
+                    Console.WriteLine($"Perimeter: {b}(cm) + {h}(cm) +{side3}(cm) = {perimeter}");
+
+                    shape.Typ = type;
+                    shape.Width = b;
+                    shape.Length = h;
+                    shape.Side3 = side3;
+                    shape.Area = area;
+                    shape.Perimeter = perimeter;
+                    shape.Date = DateTime.Today;
+                    context.SaveChanges();
+                    Console.WriteLine("Calculation updated successfully");
+                    return true;
+                }
+                else if (type == "Romb")
+                {
+                    var area = _shapeServices.SquareArea(b, h);
+                    var perimeter = _shapeServices.RombPerimeter(b);
+                    Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
+                    Console.WriteLine($"Perimeter: {b}(s) = {perimeter}");
+                    shape.Typ = type;
+                    shape.Width = b;
+                    shape.Length = h;
+                    shape.Area = area;
+                    shape.Perimeter = perimeter;
+                    shape.Date = DateTime.Today;
+                    context.SaveChanges();
+                    Console.WriteLine("Calculation updated successfully");
+                    return true;
+                }
             }
-            var _shapeServices = new ShapeServices();
-            Console.WriteLine("-------Update-------");
-            Console.WriteLine("write the shapes name to save the result");
-            var type = Console.ReadLine();
-            Console.WriteLine("write the width");
-            var b = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("write the length");
-            var h = Convert.ToDouble(Console.ReadLine());
-            if(shape.Typ== "Rectangle" || shape.Typ == "Parallellogram")
+            catch (FormatException)
             {
-                var area = _shapeServices.SquareArea(b, h);
-                var perimeter = _shapeServices.RecAndParallelPerimeter(b, h);
-                Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
-                Console.WriteLine($"Perimeter: {b}(b) + {h}(h) = {perimeter}");
+                Console.WriteLine("Invalid input. Please enter a numeric value.");
+                return false;
             }
-            else if (shape.Typ == "Triangle")
-            {
-                Console.WriteLine("Give Side3 a value");
-                var side3 = 0.0;
-                var area = _shapeServices.TriangleArea(b, h);
-                side3 = Convert.ToDouble(Console.ReadLine());
-                var perimeter = _shapeServices.TrianglePerimeter(b, h, side3);
-                Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
-                Console.WriteLine($"Perimeter: {b}(cm) + {h}(cm) +{side3}(cm) = {perimeter}");
-            }
-            else if (shape.Typ == "Romb")
-            {
-                
-               var area = _shapeServices.SquareArea(b, h);
-               var perimeter = _shapeServices.RombPerimeter(b);
-                Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
-                Console.WriteLine($"Perimeter: {b}(s) = {perimeter}");
-            }
-            var date = DateTime.Today;
-            Console.WriteLine(date.ToString());
-            context.Shapes.Update(shape);
-            context.SaveChanges();
-            //switch (shape.Typ)
-            //{
-            //    case "Rectangle":
-            //        var _shapeServices = new ShapeServices();
-            //        Console.WriteLine("-------Rectangle-------");
-            //        Console.WriteLine("write the shapes name to save the result");
-            //        var type = Console.ReadLine();
-            //        Console.WriteLine("Write the width");
-            //        var b = Convert.ToDouble(Console.ReadLine());
-            //        Console.WriteLine("write the length");
-            //        var h = Convert.ToDouble(Console.ReadLine());
-            //        var area = _shapeServices.SquareArea(b, h);
-            //        var perimeter = _shapeServices.RecAndParallelPerimeter(b, h);
-            //        Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
-            //        Console.WriteLine($"Perimeter: {b}(b) + {h}(h) = {perimeter}");
-            //        var date = DateTime.Today;
-            //        Console.WriteLine(date.ToString());
-            //        context.Shapes.Update(shape);
-            //        context.SaveChanges();
-            //        break;
-            //    case "Parallellogram":
-            //        _shapeServices = new ShapeServices();
-            //        Console.WriteLine("-------Parallellogram-------");
-            //        Console.WriteLine("write the shapes name to save the result");
-            //         type = Console.ReadLine();
-
-            //        Console.WriteLine("Write the width");
-            //        b = Convert.ToDouble(Console.ReadLine());
-            //        Console.WriteLine("write the length");
-            //         h = Convert.ToDouble(Console.ReadLine());
-            //        area = _shapeServices.SquareArea(b, h);
-            //        perimeter = _shapeServices.RecAndParallelPerimeter(b, h);
-            //        Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
-            //        Console.WriteLine($"Perimeter: {b}(b) + {h}(h) = {perimeter}");
-            //         date = DateTime.Today;
-            //        Console.WriteLine(date.ToString());
-            //        context.Shapes.Update(shape);
-            //        context.SaveChanges();
-            //        break;
-            //    case "Triangle":
-            //         _shapeServices = new ShapeServices();
-            //        Console.WriteLine("-------Triangle-------");
-            //        Console.WriteLine("write the shapes name to save the result");
-            //        type = Console.ReadLine();
-            //        Console.WriteLine("Write the width");
-            //         b = Convert.ToDouble(Console.ReadLine());
-            //        Console.WriteLine("write the sidelength");
-            //         h = Convert.ToDouble(Console.ReadLine());
-            //        Console.WriteLine("Give Side3 a value");
-            //        var side3 = 0.0;
-            //        area = _shapeServices.TriangleArea(b, h);
-            //        side3 = Convert.ToDouble(Console.ReadLine());
-            //        perimeter = _shapeServices.TrianglePerimeter(b, h, side3);
-            //        Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
-            //        Console.WriteLine($"Perimeter: {b}(cm) + {h}(cm) +{side3}(cm) = {perimeter}");
-            //         date = DateTime.Today;
-            //        Console.WriteLine(date.ToString());
-            //        context.Shapes.Update(shape);
-            //        context.SaveChanges();
-            //        break;
-            //    case "Romb":
-            //         _shapeServices = new ShapeServices();
-            //        Console.WriteLine("-------Romb-------");
-            //        Console.WriteLine("write the shapes name to save the result");
-            //         type = Console.ReadLine();
-            //        Console.WriteLine("Write the width");
-            //         b = Convert.ToDouble(Console.ReadLine());
-            //        Console.WriteLine("write the sidelength");
-            //         h = Convert.ToDouble(Console.ReadLine());
-            //         area = _shapeServices.SquareArea(b, h);
-            //        perimeter = _shapeServices.RombPerimeter(b);
-            //        Console.WriteLine($"Area: {b}(b) * {h}(h) = {area}");
-            //        Console.WriteLine($"Perimeter: {b}(s) = {perimeter}");
-            //         date = DateTime.Today;
-            //        Console.WriteLine(date.ToString());
-            //        context.Shapes.Update(shape);
-            //        context.SaveChanges();
-            //        break;
-            //    default:
-            //        Console.WriteLine("Invalid shape type.");
-            //        return;
-            //}
-
-
-
-            Console.WriteLine("Shape updated successfully.");
+            Console.WriteLine("Press any key to quit");
+            Console.ReadLine();
+            return false;
         }
         public static void DeleteShape(ApplicationDbContext context)
         {
@@ -204,4 +158,4 @@ namespace Project1.ShapesData
 
         }
     }
-}
+    }

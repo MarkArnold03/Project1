@@ -1,5 +1,6 @@
 ﻿using Project1.CalculatorData;
 using Project1.Data;
+using Project1.Rock_Paper_ScissorsData;
 using Project1.ShapesData;
 using System;
 using System.Collections.Generic;
@@ -104,6 +105,32 @@ namespace Project1
                                 break;
                             }
 
+                        }
+                        break;
+                    case 3:
+                        while(true)
+                        {
+                            Console.Clear();
+                            var gameChoice = GameMenu.GamesMenu();
+                            switch (gameChoice)
+                            {
+                                case 1:
+                                    Console.Clear();
+                                    Game.GameDisplay(dbContext); 
+                                    break;
+                                case 2:
+                                    Console.Clear();
+                                    GameMenu.ShowAllResults(dbContext);
+                                    break;
+                                default:
+                                    Console.WriteLine("Invalid choice.");
+                                    break;
+                            }
+                            if (gameChoice == 0)
+                            {
+                                Console.Clear();
+                                break;
+                            }
                         }
                         break;
 

@@ -45,7 +45,7 @@ namespace Project1.CalculatorData
             Console.WriteLine("--\t-----\t--------\t-----\t----");
             foreach (var calculation in calculations)
             {
-                Console.WriteLine($"{calculation.ID}\t{calculation.Tal2}\t{calculation.Operator}\t{calculation.Tal2}\t{calculation.Result}");
+                Console.WriteLine($"{calculation.ID}\t{calculation.Tal1}\t{calculation.Operator}\t{calculation.Tal2}\t{calculation.Result}");
             }
             Console.ReadLine();
 
@@ -116,6 +116,7 @@ namespace Project1.CalculatorData
                     calculation.Date = DateTime.Today;
                     context.SaveChanges();
                     Console.WriteLine("Calculation updated successfully");
+                    break;
                 }
             }
         }

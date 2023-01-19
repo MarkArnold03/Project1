@@ -25,7 +25,7 @@ namespace Project1.ShapesData
                 Console.WriteLine("2: Rectangle");
                 Console.WriteLine("3: Romb");
                 Console.WriteLine("4: Triangle");
-                Console.WriteLine("0: ack to main menu");
+                Console.WriteLine("0: Back to main menu");
                 int output;
                 while (true)
                 {

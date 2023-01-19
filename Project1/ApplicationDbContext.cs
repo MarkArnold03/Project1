@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Project1.ShapesData;
 using Project1.CalculatorData;
+using Project1.Rock_Paper_ScissorsData;
 
 namespace Project1
 {
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Shape> Shapes { get; set; }
-        //public DbSet<StenSaxPåse> Spelningar { get; set; }
+        public DbSet<GameResult> Games { get; set; }
         public DbSet<Calculation> Calculations { get; set; }
         public ApplicationDbContext()
         {
