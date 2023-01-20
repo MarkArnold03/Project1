@@ -27,6 +27,7 @@ namespace Project1.Rock_Paper_ScissorsData
                 var computerChoice = values[index];
                 Console.Clear();
                 Console.Write("Enter your choice\n1: rock\n2: paper\n3: scissors\n0: back ");
+                Console.WriteLine();
                 var input = Console.ReadLine();
                 bool success = int.TryParse(input, out int output);
                 if (success)
