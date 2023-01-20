@@ -12,8 +12,8 @@ using Project1;
 namespace Project1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230119203428_Rock,Paper,Scissors")]
-    partial class RockPaperScissors
+    [Migration("20230120230943_Rock,Paper,Sciossor")]
+    partial class RockPaperSciossor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,18 +63,18 @@ namespace Project1.Migrations
 
                     b.Property<string>("ComputerChoice")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Result")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserChoice")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<double>("WinRate")
                         .HasColumnType("float");

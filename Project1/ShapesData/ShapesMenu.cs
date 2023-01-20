@@ -97,6 +97,7 @@ namespace Project1.ShapesData
                 Area = area,
                 Perimeter = perimeter,
             });
+
             context.SaveChanges();
             Console.ReadLine();
         }

@@ -55,9 +55,16 @@ namespace Project1.ShapesData
         }
         public static bool UpdateShape(ApplicationDbContext context)
         {
-            Console.Write("Enter the Shape ID to update: ");
+            
             try
             {
+                Console.WriteLine("\n Enter the Shape ID to update: ");
+                Console.WriteLine("ID\tType\tWidth\tLength\tSide3\tArea\tParimeter\tDate");
+                Console.WriteLine("--\t-------------\t------\t-----\t-------\t--------\t--------\t-------");
+                foreach (var shapes in context.Shapes)
+                {
+                    Console.WriteLine($"{shapes.ShapeId}\t{shapes.Typ}\t{shapes.Width}\t{shapes.Length}\t{shapes.Side3}\t{shapes.Area}\t{shapes.Perimeter}\t{shapes.Date}");
+                }
                 var id = int.Parse(Console.ReadLine());
                 var shape = context.Shapes.FirstOrDefault(s => s.ShapeId == id);
                 if (shape == null)

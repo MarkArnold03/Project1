@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Project1.Migrations
 {
-    public partial class RockPaperScissors : Migration
+    public partial class RockPaperSciossor : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,9 +15,9 @@ namespace Project1.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserChoice = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComputerChoice = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Result = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserChoice = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    ComputerChoice = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Result = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     WinRate = table.Column<double>(type: "float", nullable: false)
                 },
